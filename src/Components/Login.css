@@ -1,5 +1,3 @@
-
-/* Pure page ko 100% height aur zero margin dena jaruri hai */
 body, html, #root {
   margin: 0;
   padding: 0;
@@ -7,22 +5,14 @@ body, html, #root {
 }
 
 
-/* .login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #f4f6f9;
-} */
-
 
 .login-container{
  display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;        /* vh = viewport height */
-  width: 100vw;         /* pure screen width */
-  margin: 0 auto;       /* horizontal center */
+  height: 100vh;        
+  width: 100vw;        
+  margin: 0 auto;      
 }
 
 
