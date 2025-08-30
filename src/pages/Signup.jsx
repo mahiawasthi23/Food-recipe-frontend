@@ -1,34 +1,39 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 import "./Signup.css";
 
 function Signup() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!form.username || !form.email || !form.password) {
       alert("All fields are required.");
       return;
     }
 
+    setLoading(true);
     try {
-      const res = await fetch("https://recipe-app-backend-2-23l5.onrender.com/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.msg || "Signup failed");
+      const response = await axios.post(
+        "https://recipe-app-backend-2-23l5.onrender.com/api/auth/signup",
+        form
+      );
 
-      alert("Signup successful! Please login.");
-      navigate("/login");
+      localStorage.setItem("token", response.data.token);
+      alert("Signup successful!");
+      navigate("/dashboard");
     } catch (err) {
-      alert(err.message);
+      alert(err.response?.data?.error || "Signup failed");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -37,16 +42,20 @@ function Signup() {
       <form className="signup-form" onSubmit={handleSubmit}>
         <h2>Create Account</h2>
         <input
+          type="text"
           name="username"
           placeholder="Username"
           value={form.username}
           onChange={handleChange}
+          required
         />
         <input
+          type="email"
           name="email"
           placeholder="Email"
           value={form.email}
           onChange={handleChange}
+          required
         />
         <input
           type="password"
@@ -54,10 +63,13 @@ function Signup() {
           placeholder="Password"
           value={form.password}
           onChange={handleChange}
+          required
         />
-        <button type="submit">Sign Up</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Signing up..." : "Sign Up"}
+        </button>
         <p>
-          Already have an account? <a href="/login">Login</a>
+          Already have an account? <Link to="/login">Login</Link>
         </p>
       </form>
     </div>
@@ -65,7 +77,3 @@ function Signup() {
 }
 
 export default Signup;
-
-
-
-

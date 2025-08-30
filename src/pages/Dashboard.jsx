@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
 const Dashboard = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [recipes, setRecipes] = useState([]);
   const [totalCalories, setTotalCalories] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -11,13 +13,13 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!user) {
-      window.location.href = "/login";
+      navigate('/login');
       return;
     }
 
     const fetchRecipes = async () => {
       try {
-        const response = await fetch('/api/recipes', {
+        const response = await fetch('https://recipe-app-backend-2-23l5.onrender.com/api/recipes', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -29,9 +31,7 @@ const Dashboard = () => {
 
         const data = await response.json();
         setRecipes(data);
-        setTotalCalories(
-          data.reduce((sum, recipe) => sum + parseInt(recipe.calories), 0)
-        );
+        setTotalCalories(data.reduce((sum, recipe) => sum + parseInt(recipe.calories || 0), 0));
       } catch (err) {
         setError(err.message);
       } finally {
@@ -40,10 +40,10 @@ const Dashboard = () => {
     };
 
     fetchRecipes();
-  }, [user]);
+  }, [user, navigate]);
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (error) return <div className="error-message">Error: {error}</div>;
 
   return (
     <div className="dashboard">
@@ -69,3 +69,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
