@@ -12,10 +12,14 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/auth/login", form);
+      const res = await axios.post(
+        "https://recipe-app-backend-2-23l5.onrender.com/api/auth/login",
+        form
+      );
+
       alert("Login successful!");
       localStorage.setItem("token", res.data.token);
-      window.location.href = "/dashboard"; 
+      window.location.href = "/dashboard";
     } catch (err) {
       alert(err.response?.data?.msg || "Login failed");
     }
