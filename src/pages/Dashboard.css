@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f6f9;
+  color: #333;
+}
+
+
+.dashboard {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.dashboard h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.dashboard h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #16a085;
+}
+
+
+.recipes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+
+.recipe-card {
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.recipe-card h3 {
+  margin: 0 0 0.5rem 0;
+  color: #34495e;
+}
+
+.recipe-card p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
