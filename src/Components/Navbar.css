@@ -1,70 +1,68 @@
-/* Style for the navbar */
 .navbar {
-  display: flex;                   /* Use flexbox for layout */
-  justify-content: space-between;  /* Space between logo and nav links */
-  align-items: center;             /* Align items vertically */
-  background: #333;                /* Dark background for navbar */
-  padding: 12px 20px;              /* Add padding for spacing */
-  color: #fff;                     /* White text color */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds subtle shadow for depth */
+  display: flex;                   
+  justify-content: space-between;  
+  align-items: center;             
+  background: #333;               
+  padding: 12px 20px;              
+  color: #fff;                     
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
-/* Style for the logo */
+
 .logo {
-  font-size: 24px;                 /* Increase font size for logo */
-  font-weight: bold;               /* Make the font bold */
-  letter-spacing: 1px;             /* Slightly space out the letters */
-  text-transform: uppercase;       /* Make the logo text uppercase */
+  font-size: 24px;                 
+  font-weight: bold;               
+  letter-spacing: 1px;             
+  text-transform: uppercase;       
 }
 
-/* Style for the navigation links */
+
 .nav-links {
-  display: flex;                   /* Flex layout for links */
-  gap: 15px;                       /* Add space between links */
+  display: flex;                   
+  gap: 15px;                       
 }
 
 .nav-links a {
-  color: #fff;                     /* White text color */
-  text-decoration: none;           /* Remove underline from links */
-  font-size: 16px;                 /* Slightly larger font size for links */
-  transition: color 0.3s ease;     /* Smooth color transition on hover */
+  color: #fff;                     
+  text-decoration: none;           
+  font-size: 16px;                 
+  transition: color 0.3s ease;     
 }
 
 .nav-links a:hover {
-  color: #e63946;                  /* Change color on hover */
+  color: #e63946;                  
 }
 
-/* Optional: style for buttons if needed */
+
 .logout-btn {
-  background: #e63946;             /* Red background for logout button */
-  border: none;                    /* Remove borders */
-  padding: 6px 12px;               /* Add padding for button */
-  color: white;                    /* White text color */
-  cursor: pointer;                 /* Pointer cursor on hover */
-  font-size: 14px;                 /* Smaller font for button */
-  border-radius: 4px;              /* Slightly rounded corners */
-  transition: background 0.3s ease; /* Smooth transition for background */
+  background: #e63946;             
+  border: none;                    
+  padding: 6px 12px;               
+  color: white;                    
+  cursor: pointer;
+  font-size: 14px;                 
+  border-radius: 4px;              
+  transition: background 0.3s ease; 
 }
 
 .logout-btn:hover {
-  background: #d62828;             /* Darker red on hover */
+  background: #d62828;            
 }
 
-/* Responsive styling for small screens */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;        /* Stack navbar items vertically on small screens */
-    align-items: flex-start;       /* Align items to the start */
+    flex-direction: column;        
+    align-items: flex-start;       
   }
 
   .nav-links {
-    flex-direction: column;        /* Stack links vertically */
-    gap: 10px;                      /* Smaller gap between links */
-    width: 100%;                    /* Make the nav-links take full width */
-    padding-left: 20px;             /* Add padding to the left */
+    flex-direction: column;        
+    gap: 10px;                      
+    width: 100%;                    
+    padding-left: 20px;            
   }
 
   .nav-links a {
-    font-size: 18px;                /* Increase font size on small screens */
+    font-size: 18px;                
   }
 }
