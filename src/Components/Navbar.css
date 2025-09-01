@@ -1,90 +1,158 @@
-
 .navbar {
-  display: flex;                   
-  justify-content: space-between;  
-  align-items: center;             
-  background: #333; 
-  font-weight: bold;              
-  padding: 12px 20px;              
-  color: #fff;                     
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #333;
+  font-weight: bold;
+  padding: 12px 20px;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-
-
-.logo {
-  font-size: 24px;                 
-  font-weight: bold;               
-  letter-spacing: 1px;             
-  text-transform: uppercase;       
-}
-
 
 .logo {
   display: flex;
   align-items: center;
   gap: 8px;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
-
 
 .logo-img {
   width: 40px;
-  height: auto;   /* height auto rakho taaki ratio na toote */
+  height: auto;
   object-fit: contain;
-  background: none; 
-  border: none;  
+  background: none;
+  border: none;
 }
 
-
-
-
 .nav-links {
-  display: flex;                   
-  gap: 15px;                       
+  display: flex;
+  gap: 15px;
 }
 
 .nav-links a {
-  color: #fff;                     
-  text-decoration: none;           
-  font-size: 22px; 
-  font-weight: bold;                
-  transition: color 0.3s ease;     
+  color: #fff;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: #e63946;                  
+  color: #e63946;
 }
 
-
 .logout-btn {
-  background: #e63946;             
-  border: none;                    
-  padding: 6px 12px;               
-  color: white;                    
+  background: #e63946;
+  border: none;
+  padding: 6px 12px;
+  color: white;
   cursor: pointer;
-  font-size: 14px;                 
-  border-radius: 4px;              
-  transition: background 0.3s ease; 
+  font-size: 14px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
 }
 
 .logout-btn:hover {
-  background: #d62828;            
+  background: #d62828;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .navbar {
-    flex-direction: column;        
-    align-items: flex-start;       
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .logo-img {
+    width: 28px;
   }
 
   .nav-links {
-    flex-direction: column;        
-    gap: 10px;                      
-    width: 100%;                    
-    padding-left: 20px;            
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    padding-left: 10px;
   }
 
   .nav-links a {
-    font-size: 18px;                
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .logo-img {
+    width: 32px;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .logo {
+    font-size: 22px;
+  }
+
+  .logo-img {
+    width: 36px;
+  }
+
+  .nav-links a {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .navbar {
+    padding: 14px 40px;
+  }
+
+  .nav-links a {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 1441px) {
+  .navbar {
+    max-width: 1400px;
+    margin: auto;
+  }
+
+  .logo {
+    font-size: 28px;
+  }
+
+  .logo-img {
+    width: 50px;
+  }
+
+  .nav-links a {
+    font-size: 24px;
   }
 }
