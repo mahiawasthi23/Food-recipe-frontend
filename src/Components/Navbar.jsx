@@ -1,10 +1,17 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
+import logo from "../assets/logo3Recipe.png"; 
 
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <h2 className="logo">RecipeApp</h2>
+      {/* Logo */}
+      <div className="logo">
+        <img src={logo} alt="RecipeApp Logo" className="logo-img" />
+        <span>RecipeApp</span>
+      </div>
+
+      {/* Links */}
       <div className="nav-links">
         <NavLink to="/" end className="nav-link">Home</NavLink>
         <NavLink to="/login" className="nav-link">Login</NavLink>
@@ -15,4 +22,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
 
