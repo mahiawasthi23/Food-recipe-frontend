@@ -1,11 +1,13 @@
 import { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; 
 import "./Login.css";
 
 function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth(); 
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -17,16 +19,16 @@ function Login() {
       alert("Please enter both email and password.");
       return;
     }
+
+    setLoading(true);
     try {
-      const res = await axios.post(
-        "https://recipe-app-backend-2-23l5.onrender.com/api/auth/login",
-        form
-      );
+      await login(form.email, form.password); 
       alert("Login successful!");
-      localStorage.setItem("token", res.data.token);
-      navigate("/dashboard");
+      navigate("/dashboard"); 
     } catch (err) {
       alert(err.response?.data?.msg || "Login failed");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -39,6 +41,7 @@ function Login() {
           placeholder="Email"
           value={form.email}
           onChange={handleChange}
+          required
         />
         <input
           type="password"
@@ -46,10 +49,13 @@ function Login() {
           placeholder="Password"
           value={form.password}
           onChange={handleChange}
+          required
         />
-        <button type="submit">Login</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
         <p>
-          Don't have an account? <a href="/signup">Sign up</a>
+          Don't have an account? <Link to="/signup">Sign up</Link>
         </p>
       </form>
     </div>
@@ -57,8 +63,3 @@ function Login() {
 }
 
 export default Login;
-
-
-
-
-
