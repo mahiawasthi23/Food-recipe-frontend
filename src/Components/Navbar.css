@@ -28,16 +28,17 @@
 
 .logo-img {
   width: 40px;
-  height: auto;   /* height auto rakho taaki ratio na toote */
+  height: auto;  
   object-fit: contain;
   background: none; 
-  border: none;  
+  border: none; 
+} 
 
 .nav-links {
   display: flex;
   gap: 15px;
   align-items: center;
-  flex-wrap: wrap;  /* wrap if links overflow */
+  flex-wrap: wrap;  
 }
 
 
@@ -54,7 +55,7 @@
 
 .nav-links a:hover,
 .nav-links button:hover {
-  color: #e63946;
+  color: #fff;
 }
 
 .logout-btn {
