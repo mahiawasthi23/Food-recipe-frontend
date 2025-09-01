@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import { useAuth } from "../context/AuthContext"; 
 import "./Signup.css";
 
 function Signup() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { signup } = useAuth(); 
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -22,14 +23,12 @@ function Signup() {
 
     setLoading(true);
     try {
-      const response = await axios.post(
-        "https://recipe-app-backend-2-23l5.onrender.com/api/auth/signup",
-        form
-      );
 
-      localStorage.setItem("token", response.data.token);
+    await signup(form.username, form.email, form.password);
+
+
       alert("Signup successful!");
-      navigate("/dashboard");
+      navigate("/dashboard"); 
     } catch (err) {
       alert(err.response?.data?.error || "Signup failed");
     } finally {
