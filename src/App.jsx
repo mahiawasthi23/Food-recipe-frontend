@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Banner from "./pages/Banner";
 import Dashboard from "./pages/Dashboard";
+import RecipeForm from "./pages/RecipeForm";
 import { AuthProvider, useAuth } from "./context/AuthContext"; 
 import Footer from "./Components/Footer";
 
@@ -17,6 +18,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<PrivateRoute />} />
+          <Route path="/recipes/new" element={<RecipeForm/>}/>
+          <Route path="/recipes/:id/edit" element={<RecipeForm />} />
         </Routes>
         <Footer />
       </Router>
