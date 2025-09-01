@@ -2,9 +2,11 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Navbar from "./Components/Navbar";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Banner from "./pages/Banner";
 import Dashboard from "./pages/Dashboard";
 import RecipeForm from "./pages/RecipeForm";
 import { AuthProvider, useAuth } from "./context/AuthContext"; 
+import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -12,13 +14,14 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Signup />} />
+          <Route path="/" element={<Banner/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<PrivateRoute />} />
           <Route path="/recipes/new" element={<RecipeForm/>}/>
           <Route path="/recipes/:id/edit" element={<RecipeForm />} />
         </Routes>
+        <Footer />
       </Router>
     </AuthProvider>
   );

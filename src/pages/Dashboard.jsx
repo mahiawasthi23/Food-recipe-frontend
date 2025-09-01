@@ -30,8 +30,7 @@ export default function Dashboard() {
     const fetchAll = async () => {
       setLoading(true);
       setError("");
-      try {
-        const [mineRes, feedRes] = await Promise.all([
+      try {        const [mineRes, feedRes] = await Promise.all([
           fetch(`${API_BASE}/api/recipes`, { headers: { Authorization: `Bearer ${token}` } }),
           fetch(`${API_BASE}/api/recipes/public-feed`),
         ]);
@@ -161,7 +160,9 @@ export default function Dashboard() {
   const handleAdd = () => navigate("/recipes/new");
 
   if (loading) return <div>Loading...</div>;
+
   if (error) return <div className="error">Error: {error}</div>;
+
 
   return (
     <div className="dash-wrap">
@@ -272,6 +273,7 @@ function RecipeCard({ recipe, isMine = false, meId, onToggleShared, onToggleFavo
   const mineFav = Array.isArray(recipe.favorites) && meId ? recipe.favorites.includes(meId) : false;
   const totalFavs = Array.isArray(recipe.favorites) ? recipe.favorites.length : 0;
 
+
   return (
     <div className="card">
       {recipe.image && (
@@ -322,3 +324,4 @@ function EmptyState({ onAdd }) {
     </div>
   );
 }
+
