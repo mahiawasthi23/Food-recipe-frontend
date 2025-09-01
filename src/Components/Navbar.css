@@ -8,6 +8,7 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   position: relative;
   flex-wrap: wrap;
+
 }
 
 .logo {
@@ -17,12 +18,28 @@
   text-transform: uppercase;
 }
 
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.logo-img {
+  width: 40px;
+  height: auto;   /* height auto rakho taaki ratio na toote */
+  object-fit: contain;
+  background: none; 
+  border: none;  
+
 .nav-links {
   display: flex;
   gap: 15px;
   align-items: center;
   flex-wrap: wrap;  /* wrap if links overflow */
 }
+
 
 .nav-links a,
 .nav-links button {

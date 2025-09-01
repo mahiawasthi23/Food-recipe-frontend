@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import "./Navbar.css";
+import logo from "../assets/logo3Recipe.png"; 
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,6 +16,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
+
       <h2 className="logo">RecipeApp</h2>
 
       <div className="menu-toggle" onClick={() => setMenuOpen((prev) => !prev)}>
@@ -42,9 +44,11 @@ const Navbar = () => {
             Logout
           </button>
         )}
+
       </div>
     </nav>
   );
 };
 
 export default Navbar;
+
