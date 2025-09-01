@@ -15,7 +15,6 @@ export default function Dashboard() {
   const [error, setError] = useState("");
   const [feedOpen, setFeedOpen] = useState(false);
 
- 
   const [query, setQuery] = useState("");
   const [sortBy, setSortBy] = useState("createdAt_desc");
   const [onlyFavMine, setOnlyFavMine] = useState(false);
@@ -54,9 +53,7 @@ export default function Dashboard() {
 
   const meId = user?._id || user?.id; 
   const isFavoritedByMe = (r) => Array.isArray(r.favorites) && meId ? r.favorites.includes(meId) : false;
-  const favCount = (r) => (Array.isArray(r.favorites) ? r.favorites.length : 0);
 
- 
   const stats = useMemo(() => {
     const totalRecipes = recipes.length;
     const totalCalories = recipes.reduce((sum, r) => sum + (parseInt(r.calories || 0, 10) || 0), 0);
@@ -96,21 +93,19 @@ export default function Dashboard() {
     return list;
   }, [recipes, query, sortBy, onlyFavMine]);
 
- 
-const patchRecipe = async (id, body) => {
-  console.log("PATCH request with ID:", id);
-  const res = await fetch(`${API_BASE}/api/recipes/${id}`, {
-    method: "PATCH",   
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(body),
-  });
-  if (!res.ok) throw new Error("Update failed");
-  return res.json();
-};
-
+  const patchRecipe = async (id, body) => {
+    console.log("PATCH request with ID:", id);
+    const res = await fetch(`${API_BASE}/api/recipes/${id}`, {
+      method: "PATCH",   
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) throw new Error("Update failed");
+    return res.json();
+  };
 
   const deleteRecipe = async (id) => {
     const res = await fetch(`${API_BASE}/api/recipes/${id}`, {
@@ -120,12 +115,23 @@ const patchRecipe = async (id, body) => {
     if (!res.ok) throw new Error("Delete failed");
   };
 
- 
+
   const handleToggleShared = async (recipe) => {
     console.log("Toggle Shared Recipe:", recipe._id);
     try {
       const updated = await patchRecipe(recipe._id, { shared: !recipe.shared });
+
+     
       setRecipes((prev) => prev.map((r) => (r._id === recipe._id ? { ...r, ...updated } : r)));
+
+      setPublicFeed((prev) => {
+        if (updated.shared) {
+          if (!prev.find((r) => r._id === updated._id)) return [...prev, updated];
+          return prev;
+        } else {
+          return prev.filter((r) => r._id !== updated._id);
+        }
+      });
     } catch (e) {
       alert(e.message || "Could not update shared");
     }
@@ -145,6 +151,7 @@ const patchRecipe = async (id, body) => {
     try {
       await deleteRecipe(recipe._id);
       setRecipes((prev) => prev.filter((r) => r._id !== recipe._id));
+      setPublicFeed((prev) => prev.filter((r) => r._id !== recipe._id));
     } catch (e) {
       alert(e.message || "Could not delete");
     }
@@ -210,6 +217,8 @@ const patchRecipe = async (id, body) => {
     </div>
   );
 }
+
+
 
 function Header({ stats, user, onAdd }) {
   const { totalRecipes, totalCalories, avgCalories, sharedCount, myFavsCount } = stats;
