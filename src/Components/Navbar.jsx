@@ -16,13 +16,11 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      {/* Logo */}
       <div className="logo">
         <img src={logo} alt="RecipeApp Logo" className="logo-img" />
         <span>RecipeApp</span>
       </div>
 
-      {/* Hamburger */}
       <div
         className="menu-toggle"
         onClick={() => setMenuOpen((prev) => !prev)}
@@ -30,7 +28,6 @@ const Navbar = () => {
         <span style={{ fontSize: "28px", cursor: "pointer" }}>☰</span>
       </div>
 
-      {/* Links */}
       <div className={`nav-links ${menuOpen ? "active" : ""}`}>
         <NavLink to="/" end className="nav-link" onClick={() => setMenuOpen(false)}>
           Home

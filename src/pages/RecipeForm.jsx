@@ -6,7 +6,7 @@ const API_BASE = "https://recipe-app-backend-2-23l5.onrender.com";
 
 export default function RecipeForm() {
   const navigate = useNavigate();
-  const { id } = useParams(); // recipe id
+  const { id } = useParams();
   const token = localStorage.getItem("token");
 
   const [name, setName] = useState("");
@@ -15,9 +15,8 @@ export default function RecipeForm() {
   const [calories, setCalories] = useState("");
   const [image, setImage] = useState("");
 
-  // Fetch recipe data if editing
   useEffect(() => {
-    if (!id) return; // Add mode
+    if (!id) return; 
     const fetchRecipe = async () => {
       try {
         const res = await fetch(`${API_BASE}/api/recipes/${id}`, {
@@ -40,7 +39,7 @@ export default function RecipeForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const method = id ? "PATCH" : "POST"; // edit or add
+      const method = id ? "PATCH" : "POST"; 
       const url = id ? `${API_BASE}/api/recipes/${id}` : `${API_BASE}/api/recipes`;
       const res = await fetch(url, {
         method,
