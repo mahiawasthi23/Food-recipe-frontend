@@ -17,10 +17,13 @@ const Navbar = () => {
   return (
     <nav className="navbar">
 
-      <h2 className="logo">RecipeApp</h2>
+      <div className="logo">
+    <img src={logo} alt="RecipeApp Logo" className="logo-img" />
+    <span>RecipeApp</span>
+  </div>
 
       <div className="menu-toggle" onClick={() => setMenuOpen((prev) => !prev)}>
-        ☰
+        
       </div>
 
       <div className={`nav-links ${menuOpen ? "active" : ""}`}>
@@ -34,7 +37,7 @@ const Navbar = () => {
               Login
             </NavLink>
             <NavLink to="/signup" className="nav-link" onClick={() => setMenuOpen(false)}>
-              Sign Up
+              SignUp
             </NavLink>
           </>
         )}
