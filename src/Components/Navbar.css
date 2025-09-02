@@ -102,6 +102,26 @@ position: fixed;
   cursor: pointer;
 }
 
+
+.nav-btn,
+.logout-btn {
+  background-color: #ff7043;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  margin: 0 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.nav-btn:hover,
+.logout-btn:hover {
+  background-color: #ff5722;
+}
+
+
 /* Small screen */
 @media (max-width: 768px) {
   .menu-toggle {

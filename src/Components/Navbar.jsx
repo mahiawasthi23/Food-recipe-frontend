@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import "./Navbar.css";
-import logo from "../assets/logo3Recipe.png"; 
+import logo from "../assets/logo3Recipe.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,41 +16,38 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-
+      {/* Logo */}
       <div className="logo">
-    <img src={logo} alt="RecipeApp Logo" className="logo-img" />
-    <span>RecipeApp</span>
-  </div>
-
-      <div className="menu-toggle" onClick={() => setMenuOpen((prev) => !prev)}>
-        
+        <img src={logo} alt="RecipeApp Logo" className="logo-img" />
+        <span>RecipeApp</span>
       </div>
 
+      {/* Hamburger */}
+      <div
+        className="menu-toggle"
+        onClick={() => setMenuOpen((prev) => !prev)}
+      >
+        <span style={{ fontSize: "28px", cursor: "pointer" }}>☰</span>
+      </div>
+
+      {/* Links */}
       <div className={`nav-links ${menuOpen ? "active" : ""}`}>
         <NavLink to="/" end className="nav-link" onClick={() => setMenuOpen(false)}>
           Home
         </NavLink>
 
-        {!user && (
-          <>
-            <NavLink to="/login" className="nav-link" onClick={() => setMenuOpen(false)}>
-              Login
-            </NavLink>
-            <NavLink to="/signup" className="nav-link" onClick={() => setMenuOpen(false)}>
-              SignUp
-            </NavLink>
-          </>
-        )}
+        <NavLink to="/login" className="nav-link" onClick={() => setMenuOpen(false)}>
+          Login
+        </NavLink>
 
-        {user && (
-          <button className="logout-btn" onClick={handleLogout}>
-            Logout
-          </button>
-        )}
-
+        <NavLink to="/signup" className="nav-link" onClick={() => setMenuOpen(false)}>
+          SignUp
+        </NavLink>
       </div>
     </nav>
   );
 };
 
 export default Navbar;
+
+
